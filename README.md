@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# Minimized testcase for a problem with visual regression tests in Nightwatch
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## To reproduce
+```bash
+$node --version
+v16.16.0 
+```
 
-## Available Scripts
+1. Install dependencies: `npm install`
+2. Start the webapp: `npm run start`
+3. Run the test: `npx nightwatch e2e/nightwatch-test.js`  
+   The test should pass:
+```
+ Running Admin:
+───────────────────────────────────────────────────────────────────────────────────────────────────
+  ✔ Element <body> was visible after 32 milliseconds.
+  ✔ Element <body> was visible after 22 milliseconds.
+  ✔ Passed [ok]: The screenshot for selector <body> was captured successfully.
+  ✔ Passed [ok]: Baseline screenshot does not exist; saving current screenshot to the baseline directory.
+  ✔ Visual regression test results for element <body> (857ms)
 
-In the project directory, you can run:
+  ✨ PASSED. 5 assertions. (901ms)
 
-### `npm start`
+```
+4. Modify the webapp sourcecode, any change that will cause a visual regression will do
+5. Run the test again: `npx nightwatch e2e/nightwatch-test.js`  
+The test runner will crash and output the following error:
+```
+Error
+   ENAMETOOLONG: name too long, copyfile '/path/to/project/nightwatch-vrt-error-sample/node_modules/@nightwatch/vrt/node_modules/@nightwatch/html-reporter-template/html/index.html' -> '/path/to/project/nightwatch-vrt-error-sample/vrt-report/{"environments":{"defaults":{"modules":{"e2e/nightwatch-test(default)":{"modulePath":"/path/to/project/nightwatch-vrt-error-sample/e2e/nightwatch-test.js","completedSections":{"Admin":{"vrt":{"completeBaselinePath":"/path/to/project/nightwatch-vrt-error-sample/vrt/baseline/chrome_mac os x/e2e/nightwatch-test/screenshot.png","completeDiffPath":"/path/to/project/nightwatch-vrt-error-sample/vrt/diff/chrome_mac os x/e2e/nightwatch-test/screenshot.png","completeLatestPath":"/path/to/project/nightwatch-vrt-error-sample/vrt/latest/chrome_mac os x/e2e/nightwatch-test/screenshot.png","diff":0.033126169473402835},"time":0,"status":"fail"}},"sessionCapabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"112.0.5615.49","chrome":{"chromedriverVersion":"112.0.5615.49 (bd2a7bcb881c11e8cfe3078709382934e3916914-refs/branch-heads/5615@{#936})","userDataDir":"/var/folders/pt/vx6qkft16c91sj9clwbk_jzw0000gn/T/.com.google.Chrome.VBDCXw"},"goog:chromeOptions":{"debuggerAddress":"localhost:59329"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"mac os x","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"status":"fail"}}}},"metadata":{"date":"2023-04-18T19:57:59.605Z"}}'
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
