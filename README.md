@@ -1,5 +1,8 @@
 # Minimized testcase for a problem with visual regression tests in Nightwatch
 
+To demonstrate https://github.com/nightwatchjs/nightwatch/issues/3702
+
+
 ## To reproduce
 ```bash
 $node --version
